@@ -8,6 +8,7 @@ import { LiveBadge } from "@/components/ui/Badges";
 import { Loading, ErrorState, EmptyState } from "@/components/ui/States";
 import AIExplain from "@/components/assistant/AIExplain";
 import Orrery from "@/components/three/Orrery";
+import SceneBoundary from "@/components/three/SceneBoundary";
 import { api } from "@/lib/api";
 import { formatNumber } from "@/lib/utils";
 import type { Planet, SolarSystem } from "@/lib/types";
@@ -87,17 +88,19 @@ export default function SolarSystemPage() {
             </div>
             <div className="h-[480px] md:h-[calc(100vh-15rem)] md:max-h-[760px] w-full bg-[#05060f]">
               {webgl ? (
-                <SolarSystemScene
-                  data={data}
-                  selected={selected}
-                  onSelect={setSelected}
-                  speed={paused ? 0 : speed}
-                  paused={paused}
-                  showOrbits={showOrbits}
-                  showLabels={showLabels}
-                  autoRotate={autoRotate}
-                  focus={focus}
-                />
+                <SceneBoundary fallback={<div className="p-6"><Orrery data={data} selected={selected} onSelect={setSelected} speed={speed} /></div>}>
+                  <SolarSystemScene
+                    data={data}
+                    selected={selected}
+                    onSelect={setSelected}
+                    speed={paused ? 0 : speed}
+                    paused={paused}
+                    showOrbits={showOrbits}
+                    showLabels={showLabels}
+                    autoRotate={autoRotate}
+                    focus={focus}
+                  />
+                </SceneBoundary>
               ) : (
                 <div className="p-6">
                   <Orrery data={data} selected={selected} onSelect={setSelected} speed={speed} />

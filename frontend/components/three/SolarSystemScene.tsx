@@ -9,6 +9,16 @@ import type { Planet, SolarSystem } from "@/lib/types";
 
 type Pos = Record<string, THREE.Vector3>;
 
+// Bloom (mipmapBlur) needs WebGL2; skip postprocessing if unavailable so the
+// scene still renders on WebGL1-only devices instead of crashing.
+const BLOOM_OK = (() => {
+  try {
+    return !!document.createElement("canvas").getContext("webgl2");
+  } catch {
+    return false;
+  }
+})();
+
 function orbitRadius(au: number, max: number) {
   return 7 + (Math.log10(au + 1) / Math.log10(max + 1)) * 30;
 }
@@ -239,9 +249,11 @@ export default function SolarSystemScene({
         maxDistance={120}
       />
 
-      <EffectComposer>
-        <Bloom intensity={0.9} luminanceThreshold={0.2} luminanceSmoothing={0.9} mipmapBlur />
-      </EffectComposer>
+      {BLOOM_OK && (
+        <EffectComposer>
+          <Bloom intensity={0.9} luminanceThreshold={0.2} luminanceSmoothing={0.9} mipmapBlur />
+        </EffectComposer>
+      )}
     </Canvas>
   );
 }
