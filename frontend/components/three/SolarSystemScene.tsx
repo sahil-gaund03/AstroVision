@@ -183,25 +183,48 @@ function Sun({ color }: { color: string }) {
   );
 }
 
-function CameraRig({ focus, posRef, controls }: {
+const DEFAULT_CAM = new THREE.Vector3(0, 26, 54);
+
+function CameraRig({ focus, posRef, controls, resetSignal }: {
   focus: string | null; posRef: React.MutableRefObject<Pos>;
-  controls: React.MutableRefObject<any>;
+  controls: React.MutableRefObject<any>; resetSignal: number;
 }) {
-  useFrame(() => {
+  const lastReset = useRef(resetSignal);
+  const resetting = useRef(false);
+
+  useFrame(({ camera }) => {
     if (!controls.current) return;
-    const target = focus ? posRef.current[focus] : new THREE.Vector3(0, 0, 0);
-    if (target) controls.current.target.lerp(target, 0.06);
-    controls.current.update();
+
+    // Reset View pressed -> start an ease-back animation.
+    if (resetSignal !== lastReset.current) {
+      lastReset.current = resetSignal;
+      resetting.current = true;
+    }
+
+    const focusPos = focus ? posRef.current[focus] : null;
+
+    if (focusPos) {
+      resetting.current = false;
+      controls.current.target.lerp(focusPos, 0.08);
+      camera.position.lerp(focusPos.clone().add(new THREE.Vector3(0, 6, 16)), 0.06);
+      controls.current.update();
+    } else if (resetting.current) {
+      controls.current.target.lerp(new THREE.Vector3(0, 0, 0), 0.1);
+      camera.position.lerp(DEFAULT_CAM, 0.08);
+      controls.current.update();
+      if (camera.position.distanceTo(DEFAULT_CAM) < 0.5) resetting.current = false;
+    }
+    // Otherwise: leave the camera under free user control.
   });
   return null;
 }
 
 export default function SolarSystemScene({
-  data, selected, onSelect, speed, paused, showOrbits, showLabels, autoRotate, focus,
+  data, selected, onSelect, speed, paused, showOrbits, showLabels, autoRotate, focus, resetSignal,
 }: {
   data: SolarSystem; selected: Planet | null; onSelect: (p: Planet) => void;
   speed: number; paused: boolean; showOrbits: boolean; showLabels: boolean;
-  autoRotate: boolean; focus: string | null;
+  autoRotate: boolean; focus: string | null; resetSignal: number;
 }) {
   const posRef = useRef<Pos>({});
   const controls = useRef<any>(null);
@@ -237,7 +260,7 @@ export default function SolarSystemScene({
         </group>
       ))}
 
-      <CameraRig focus={focus} posRef={posRef} controls={controls} />
+      <CameraRig focus={focus} posRef={posRef} controls={controls} resetSignal={resetSignal} />
       <OrbitControls
         ref={controls}
         enablePan

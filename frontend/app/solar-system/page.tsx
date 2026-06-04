@@ -41,7 +41,13 @@ export default function SolarSystemPage() {
   const [showLabels, setShowLabels] = useState(true);
   const [autoRotate, setAutoRotate] = useState(true);
   const [focus, setFocus] = useState<string | null>(null);
+  const [resetSignal, setResetSignal] = useState(0);
   const [webgl, setWebgl] = useState(true);
+
+  function resetView() {
+    setFocus(null);
+    setResetSignal((n) => n + 1);
+  }
 
   async function load() {
     setLoading(true);
@@ -86,7 +92,7 @@ export default function SolarSystemPage() {
             <div className="absolute top-4 left-4 z-10 flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.2em] text-cyan-400/90">
               <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" /> Real-time simulation
             </div>
-            <div className="h-[480px] md:h-[calc(100vh-15rem)] md:max-h-[760px] w-full bg-[#05060f]">
+            <div className="h-[480px] md:h-[calc(100vh-15rem)] md:max-h-[760px] w-full bg-[#05060f] relative">
               {webgl ? (
                 <SceneBoundary fallback={<div className="p-6"><Orrery data={data} selected={selected} onSelect={setSelected} speed={speed} /></div>}>
                   <SolarSystemScene
@@ -99,12 +105,24 @@ export default function SolarSystemPage() {
                     showLabels={showLabels}
                     autoRotate={autoRotate}
                     focus={focus}
+                    resetSignal={resetSignal}
                   />
                 </SceneBoundary>
               ) : (
                 <div className="p-6">
                   <Orrery data={data} selected={selected} onSelect={setSelected} speed={speed} />
                 </div>
+              )}
+              {paused && (
+                <button
+                  onClick={() => setPaused(false)}
+                  className="absolute inset-0 z-20 flex items-center justify-center bg-black/30 backdrop-blur-[2px] group"
+                >
+                  <span className="flex items-center gap-2.5 px-5 py-2.5 rounded-full border border-white/20 bg-black/60 text-sm text-white/90 group-hover:bg-black/70 transition-colors">
+                    <iconify-icon icon="solar:play-circle-linear" width="18" />
+                    Paused — Click to Resume
+                  </span>
+                </button>
               )}
             </div>
 
@@ -118,7 +136,7 @@ export default function SolarSystemPage() {
               <Toggle on={showOrbits} onClick={() => setShowOrbits((v) => !v)} icon="solar:share-circle-linear" label="Orbits" />
               <Toggle on={showLabels} onClick={() => setShowLabels((v) => !v)} icon="solar:tag-linear" label="Labels" />
               <Toggle on={autoRotate} onClick={() => setAutoRotate((v) => !v)} icon="solar:refresh-linear" label="Auto-rotate" />
-              <button onClick={() => setFocus(null)} className="ml-auto inline-flex items-center gap-2 text-xs text-white/50 hover:text-white transition-colors">
+              <button onClick={resetView} className="ml-auto inline-flex items-center gap-2 text-xs text-white/50 hover:text-white transition-colors">
                 <iconify-icon icon="solar:full-screen-square-linear" width="15" /> Reset view
               </button>
             </div>
