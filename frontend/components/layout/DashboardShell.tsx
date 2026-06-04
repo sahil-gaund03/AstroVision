@@ -18,11 +18,13 @@ export default function DashboardShell({
   subtitle,
   children,
   actions,
+  noPadding = false,
 }: {
   title: string;
   subtitle?: string;
   children: React.ReactNode;
   actions?: React.ReactNode;
+  noPadding?: boolean;
 }) {
   const pathname = usePathname();
 
@@ -103,7 +105,7 @@ export default function DashboardShell({
           </div>
         </header>
 
-        <main className="p-6 max-w-7xl mx-auto">{children}</main>
+        <main className={noPadding ? "" : "p-6 max-w-7xl mx-auto"}>{children}</main>
       </div>
     </div>
   );
