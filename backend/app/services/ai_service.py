@@ -22,7 +22,7 @@ SYSTEM_PROMPT = (
 
 GEMINI_URL = (
     "https://generativelanguage.googleapis.com/v1beta/models/"
-    "gemini-1.5-flash:generateContent"
+    "gemini-2.0-flash:generateContent"
 )
 OPENAI_URL = "https://api.openai.com/v1/chat/completions"
 
@@ -86,7 +86,9 @@ async def _gemini(prompt: str) -> str:
             params={"key": settings.GEMINI_API_KEY},
             json={"contents": [{"parts": [{"text": prompt}]}]},
         )
-        resp.raise_for_status()
+        if resp.status_code >= 400:
+            logger.warning("Gemini %s: %s", resp.status_code, resp.text[:300])
+            resp.raise_for_status()
         data = resp.json()
         return data["candidates"][0]["content"]["parts"][0]["text"].strip()
 
