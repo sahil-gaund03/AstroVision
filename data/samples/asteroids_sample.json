@@ -1,0 +1,55 @@
+{
+  "element_count": 5,
+  "asteroids": [
+    {
+      "id": "2465633",
+      "name": "465633 (2009 JR5)",
+      "close_approach_date": "2024-09-01",
+      "estimated_diameter_km": 0.45,
+      "relative_velocity_kph": 65500.0,
+      "miss_distance_km": 2850000.0,
+      "is_potentially_hazardous": true,
+      "absolute_magnitude_h": 20.4
+    },
+    {
+      "id": "3542519",
+      "name": "(2010 PK9)",
+      "close_approach_date": "2024-09-02",
+      "estimated_diameter_km": 0.12,
+      "relative_velocity_kph": 41200.0,
+      "miss_distance_km": 7400000.0,
+      "is_potentially_hazardous": false,
+      "absolute_magnitude_h": 22.1
+    },
+    {
+      "id": "3726710",
+      "name": "(2015 RC)",
+      "close_approach_date": "2024-09-03",
+      "estimated_diameter_km": 0.028,
+      "relative_velocity_kph": 22800.0,
+      "miss_distance_km": 12500000.0,
+      "is_potentially_hazardous": false,
+      "absolute_magnitude_h": 25.6
+    },
+    {
+      "id": "54016455",
+      "name": "(2020 SW)",
+      "close_approach_date": "2024-09-04",
+      "estimated_diameter_km": 1.35,
+      "relative_velocity_kph": 78900.0,
+      "miss_distance_km": 1950000.0,
+      "is_potentially_hazardous": true,
+      "absolute_magnitude_h": 18.2
+    },
+    {
+      "id": "3837615",
+      "name": "(2019 GT3)",
+      "close_approach_date": "2024-09-05",
+      "estimated_diameter_km": 0.62,
+      "relative_velocity_kph": 33400.0,
+      "miss_distance_km": 5200000.0,
+      "is_potentially_hazardous": false,
+      "absolute_magnitude_h": 19.8
+    }
+  ]
+}

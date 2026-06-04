@@ -1,0 +1,16 @@
+pl_name,hostname,discoverymethod,disc_year,pl_rade,pl_bmasse,pl_orbper,st_teff,st_rad,pl_eqt
+Kepler-22 b,Kepler-22,Transit,2011,2.38,9.1,289.86,5518,0.98,262
+Kepler-452 b,Kepler-452,Transit,2015,1.63,5.0,384.84,5757,1.11,265
+Proxima Cen b,Proxima Centauri,Radial Velocity,2016,1.07,1.27,11.19,3042,0.14,234
+TRAPPIST-1 e,TRAPPIST-1,Transit,2017,0.92,0.69,6.10,2566,0.12,251
+Kepler-186 f,Kepler-186,Transit,2014,1.17,1.44,129.94,3788,0.52,188
+TOI-700 d,TOI-700,Transit,2020,1.19,1.72,37.42,3480,0.42,268
+Kepler-442 b,Kepler-442,Transit,2015,1.34,2.36,112.30,4402,0.60,233
+GJ 667 C c,GJ 667 C,Radial Velocity,2011,1.54,3.8,28.14,3700,0.42,277
+HD 40307 g,HD 40307,Radial Velocity,2012,2.39,7.1,197.80,4977,0.72,227
+Kepler-62 f,Kepler-62,Transit,2013,1.41,2.8,267.29,4925,0.64,208
+Kepler-1649 c,Kepler-1649,Transit,2020,1.06,1.2,19.54,3240,0.23,234
+55 Cnc e,55 Cancri,Transit,2011,1.88,7.99,0.74,5172,0.94,2000
+HD 209458 b,HD 209458,Transit,1999,15.0,219.0,3.52,6065,1.20,1130
+WASP-12 b,WASP-12,Transit,2008,20.0,464.0,1.09,6300,1.66,2580
+Kepler-69 c,Kepler-69,Transit,2013,1.71,3.6,242.46,5638,0.93,299

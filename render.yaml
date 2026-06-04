@@ -1,0 +1,27 @@
+# Render Blueprint — one-click deploy for the AstroVision ExoLab AI backend.
+# In Render: New → Blueprint → connect this repo. Set secret env vars in the dashboard.
+services:
+  - type: web
+    name: astrovision-backend
+    runtime: python
+    rootDir: backend
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: SAMPLES_DIR
+        value: /opt/render/project/src/backend/data/samples
+      # Secrets — set these in the Render dashboard (sync:false keeps them out of git):
+      - key: NASA_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+      - key: CORS_ORIGINS
+        sync: false

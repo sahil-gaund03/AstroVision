@@ -1,0 +1,41 @@
+{
+  "query": "galaxy",
+  "items": [
+    {
+      "nasa_id": "PIA15985",
+      "title": "Spiral Galaxy NGC 1300",
+      "description": "Hubble captures a barred spiral galaxy 61 million light-years away in the constellation Eridanus.",
+      "date_created": "2013-01-10T00:00:00Z",
+      "media_type": "image",
+      "thumbnail": "https://images.unsplash.com/photo-1543722530-d2c3201371e7?q=80&w=800&auto=format&fit=crop",
+      "image": "https://images.unsplash.com/photo-1543722530-d2c3201371e7?q=80&w=1600&auto=format&fit=crop"
+    },
+    {
+      "nasa_id": "PIA17563",
+      "title": "Andromeda Galaxy Wide Field",
+      "description": "A sweeping view of the Andromeda Galaxy, the nearest major galaxy to the Milky Way.",
+      "date_created": "2015-01-05T00:00:00Z",
+      "media_type": "image",
+      "thumbnail": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=800&auto=format&fit=crop",
+      "image": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=1600&auto=format&fit=crop"
+    },
+    {
+      "nasa_id": "PIA12348",
+      "title": "Whirlpool Galaxy M51",
+      "description": "The graceful winding arms of the grand-design spiral galaxy M51 appear like a perfect cosmic whirlpool.",
+      "date_created": "2011-06-02T00:00:00Z",
+      "media_type": "image",
+      "thumbnail": "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?q=80&w=800&auto=format&fit=crop",
+      "image": "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?q=80&w=1600&auto=format&fit=crop"
+    },
+    {
+      "nasa_id": "PIA09579",
+      "title": "Sombrero Galaxy M104",
+      "description": "One of the most photogenic galaxies, the Sombrero features a brilliant white core encircled by thick dust lanes.",
+      "date_created": "2012-03-18T00:00:00Z",
+      "media_type": "image",
+      "thumbnail": "https://images.unsplash.com/photo-1610296669228-602fa827fc1f?q=80&w=800&auto=format&fit=crop",
+      "image": "https://images.unsplash.com/photo-1610296669228-602fa827fc1f?q=80&w=1600&auto=format&fit=crop"
+    }
+  ]
+}

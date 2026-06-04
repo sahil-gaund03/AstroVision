@@ -1,0 +1,32 @@
+# Secrets - never commit
+.env
+.env.local
+.env.*.local
+*.key
+
+# Node / Next.js
+node_modules/
+.next/
+dist/
+out/
+npm-debug.log*
+
+# Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Logs and local databases
+*.log
+*.db
+*.sqlite
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
