@@ -1,0 +1,17 @@
+import type { SolarSystem } from "./types";
+
+// Local fallback so /solar-system always renders, even if the backend is offline.
+export const FALLBACK_SOLAR_SYSTEM: SolarSystem = {
+  star: { name: "Sun", type: "G-type main-sequence (G2V)", radius_km: 696340, color: "#fdb813" },
+  fallback: true,
+  planets: [
+    { name: "Mercury", color: "#9c9c9c", radius_km: 2439.7, distance_au: 0.39, orbital_period_days: 88, rotation_period_hours: 1407.6, moons: 0, type: "Terrestrial", fact: "The smallest planet and closest to the Sun, with extreme temperature swings." },
+    { name: "Venus", color: "#e6b873", radius_km: 6051.8, distance_au: 0.72, orbital_period_days: 225, rotation_period_hours: 5832.5, moons: 0, type: "Terrestrial", fact: "The hottest planet due to a runaway greenhouse effect; it rotates backwards." },
+    { name: "Earth", color: "#4f93d6", radius_km: 6371, distance_au: 1.0, orbital_period_days: 365, rotation_period_hours: 24, moons: 1, type: "Terrestrial", fact: "The only known world to harbor life, with liquid water covering 71% of its surface." },
+    { name: "Mars", color: "#c1440e", radius_km: 3389.5, distance_au: 1.52, orbital_period_days: 687, rotation_period_hours: 24.6, moons: 2, type: "Terrestrial", fact: "The Red Planet hosts the tallest volcano and largest canyon in the solar system." },
+    { name: "Jupiter", color: "#d8a47f", radius_km: 69911, distance_au: 5.2, orbital_period_days: 4333, rotation_period_hours: 9.9, moons: 95, type: "Gas Giant", fact: "The largest planet; its Great Red Spot is a storm wider than Earth." },
+    { name: "Saturn", color: "#e3d9b0", radius_km: 58232, distance_au: 9.58, orbital_period_days: 10759, rotation_period_hours: 10.7, moons: 146, type: "Gas Giant", fact: "Famous for its spectacular ring system made of ice and rock." },
+    { name: "Uranus", color: "#aee3ee", radius_km: 25362, distance_au: 19.2, orbital_period_days: 30687, rotation_period_hours: 17.2, moons: 28, type: "Ice Giant", fact: "An ice giant that rotates on its side, likely due to an ancient collision." },
+    { name: "Neptune", color: "#3b5fd6", radius_km: 24622, distance_au: 30.05, orbital_period_days: 60190, rotation_period_hours: 16.1, moons: 16, type: "Ice Giant", fact: "The windiest planet, with supersonic winds reaching 2,100 km/h." },
+  ],
+};

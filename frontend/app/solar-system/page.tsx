@@ -5,11 +5,13 @@ import dynamic from "next/dynamic";
 import DashboardShell from "@/components/layout/DashboardShell";
 import GlassCard from "@/components/ui/GlassCard";
 import { LiveBadge } from "@/components/ui/Badges";
+import { FallbackBadge } from "@/components/ui/Badges";
 import { Loading, ErrorState, EmptyState } from "@/components/ui/States";
 import AIExplain from "@/components/assistant/AIExplain";
 import Orrery from "@/components/three/Orrery";
 import SceneBoundary from "@/components/three/SceneBoundary";
 import { api } from "@/lib/api";
+import { FALLBACK_SOLAR_SYSTEM } from "@/lib/solarSystemFallback";
 import { formatNumber } from "@/lib/utils";
 import type { Planet, SolarSystem } from "@/lib/types";
 
@@ -43,6 +45,7 @@ export default function SolarSystemPage() {
   const [focus, setFocus] = useState<string | null>(null);
   const [resetSignal, setResetSignal] = useState(0);
   const [webgl, setWebgl] = useState(true);
+  const [fallback, setFallback] = useState(false);
 
   function resetView() {
     setFocus(null);
@@ -55,9 +58,13 @@ export default function SolarSystemPage() {
     try {
       const res = await api.getSolarSystemPlanets();
       setData(res);
+      setFallback(!!res.fallback);
       setSelected(res.planets[2] || res.planets[0] || null);
     } catch {
-      setError("Could not load solar system data. Is the backend running?");
+      // Backend offline/slow -> render the simulator with local demo data.
+      setData(FALLBACK_SOLAR_SYSTEM);
+      setFallback(true);
+      setSelected(FALLBACK_SOLAR_SYSTEM.planets[2]);
     } finally {
       setLoading(false);
     }
@@ -78,7 +85,12 @@ export default function SolarSystemPage() {
     <DashboardShell
       title="3D Solar System"
       subtitle="Live orrery / AI mode active"
-      actions={<LiveBadge label="Live Orrery" />}
+      actions={
+        <div className="flex items-center gap-2">
+          <LiveBadge label="Live Orrery" />
+          <FallbackBadge fallback={fallback} />
+        </div>
+      }
     >
       {loading ? (
         <Loading label="Aligning the planets..." />
